@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 var data = [
     [
@@ -22,7 +23,7 @@ class BrowseViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        FirebaseApp.configure()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
