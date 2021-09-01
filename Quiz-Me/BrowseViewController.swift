@@ -8,22 +8,12 @@
 import UIKit
 import Firebase
 
-var data = [
-    [
-        ["First Quiz", "a demo quiz"],
-        ["3^2", "1", "4", "9", "16", "2"],
-        ["55 - 12", "43", "41", "35", "39", "0"]
-    ]
-]
-var selectedQuiz = 0
-var currentQuestion = 0
-var answersCorrect: [Bool] = []
-
 class BrowseViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseApp.configure()
+        print(data)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,6 +38,7 @@ class BrowseViewController: UITableViewController {
 
         // Configure the cell...
         cell.textLabel?.text = data[indexPath.row][0][0]
+        print(data[indexPath.row])
         cell.detailTextLabel?.text = data[indexPath.row][0][1]
         return cell
     }
