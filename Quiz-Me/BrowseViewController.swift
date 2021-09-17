@@ -58,8 +58,7 @@ class BrowseViewController: UITableViewController {
 
         // Configure the cell...
         cell.textLabel?.text = data[indexPath.row][0][0]
-        print(data[indexPath.row])
-        cell.detailTextLabel?.text = data[indexPath.row][0][1]
+        cell.detailTextLabel?.text = ""
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

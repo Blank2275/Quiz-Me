@@ -46,7 +46,7 @@ class QuizQuestionController: UIViewController {
     }
     func handleAnswer(num: Int){
         let question = data[selectedQuiz][currentQuestion + 1]
-        answersCorrect.append(question[num + 1] == question[Int(question[5]) ?? 0])
+        answersCorrect.append((num + 1) == Int(question[5]))
         print(question[num + 1])
         if(currentQuestion < data[selectedQuiz].count - 2){
             currentQuestion += 1
