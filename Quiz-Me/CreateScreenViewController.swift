@@ -66,7 +66,7 @@ class CreateScreenViewController: UIViewController {
         
     }
     @IBAction func finishQuiz(_ sender: Any) {
-        guard let serviceUrl = URL(string: "http://localhost:8070/submit-quiz") else {return}
+        guard let serviceUrl = URL(string: "\(currentURL)submit-quiz") else {return}
         var request = URLRequest(url: serviceUrl)
         request.httpMethod = "POST"
         request.setValue("text/plain", forHTTPHeaderField: "Content-Type")

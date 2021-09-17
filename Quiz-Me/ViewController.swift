@@ -14,8 +14,13 @@ var selectedQuiz = 0
 var currentQuestion = 0
 var answersCorrect: [Bool] = []
 
+let testing = false
+let testingURL = "http://localhost:8070/"
+let productionURL = "https://quiz-me-backend-connor.herokuapp.com/"
+let currentURL = testing ? testingURL : productionURL
+
 class ViewController: UIViewController{
-    let server = "http://localhost:8070/"
+    let server = currentURL
     
     override func viewDidLoad() {
         super.viewDidLoad()

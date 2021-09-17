@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class BrowseViewController: UITableViewController {
-    let server = "http://localhost:8070/"
+    let server = "\(currentURL)"
     override func viewDidLoad() {
         guard let url = URL(string: server) else {return}
         var parsedArray:[[[String]]]?
