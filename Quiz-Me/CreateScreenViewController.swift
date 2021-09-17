@@ -24,6 +24,9 @@ class CreateScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.displayNewQuestion()
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
     }
     func displayNewQuestion(){
