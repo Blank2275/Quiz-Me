@@ -10,6 +10,7 @@
 		0BF638B1B5443214464D979A /* Pods_Quiz_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AE4AA19F6776F4621F1ADB /* Pods_Quiz_Me.framework */; };
 		B308FC8A26DE9402003F27C9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B308FC8926DE9402003F27C9 /* SignInViewController.swift */; };
 		B308FC8C26DEA0D3003F27C9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B308FC8B26DEA0D3003F27C9 /* SignUpViewController.swift */; };
+		B3127CB826F4E9C9006EE202 /* CreateScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3127CB726F4E9C9006EE202 /* CreateScreenViewController.swift */; };
 		B31A6AE226DD7F90001AE48A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A6AE126DD7F90001AE48A /* AppDelegate.swift */; };
 		B31A6AE426DD7F90001AE48A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A6AE326DD7F90001AE48A /* SceneDelegate.swift */; };
 		B31A6AE626DD7F90001AE48A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31A6AE526DD7F90001AE48A /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 		B02F6FF8AFE7B1917E4AF3E3 /* Pods-Quiz-Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quiz-Me.debug.xcconfig"; path = "Target Support Files/Pods-Quiz-Me/Pods-Quiz-Me.debug.xcconfig"; sourceTree = "<group>"; };
 		B308FC8926DE9402003F27C9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B308FC8B26DEA0D3003F27C9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B3127CB726F4E9C9006EE202 /* CreateScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateScreenViewController.swift; sourceTree = "<group>"; };
 		B31A6ADE26DD7F90001AE48A /* Quiz-Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quiz-Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31A6AE126DD7F90001AE48A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B31A6AE326DD7F90001AE48A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				B31A6AE326DD7F90001AE48A /* SceneDelegate.swift */,
 				B31A6AE526DD7F90001AE48A /* ViewController.swift */,
 				B31A6AE726DD7F90001AE48A /* Main.storyboard */,
+				B3127CB726F4E9C9006EE202 /* CreateScreenViewController.swift */,
 				B308FC8B26DEA0D3003F27C9 /* SignUpViewController.swift */,
 				B308FC8926DE9402003F27C9 /* SignInViewController.swift */,
 				B31A6AF926DD9BB4001AE48A /* QuizQuestionController.swift */,
@@ -227,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3127CB826F4E9C9006EE202 /* CreateScreenViewController.swift in Sources */,
 				B31A6AE626DD7F90001AE48A /* ViewController.swift in Sources */,
 				B31A6AF826DD8902001AE48A /* QuizViewController.swift in Sources */,
 				B31A6AE226DD7F90001AE48A /* AppDelegate.swift in Sources */,
@@ -385,7 +389,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CMADG2L3X7;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = "Quiz-Me/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
