@@ -23,13 +23,17 @@ class CreateScreenViewController: UIViewController {
         ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.displayNewQuestion()
         // Do any additional setup after loading the view.
     }
     func displayNewQuestion(){
-        let questionData = self.quiz[currentQuestionEditing]
+        let questionData = self.quiz[self.currentQuestionEditing]
         self.questionNameInput.text = questionData[0]
         self.question1Input.text = questionData[1]
+        self.question2Input.text = questionData[2]
+        self.question3Input.text = questionData[3]
+        self.question4Input.text = questionData[4]
+        self.correctQuestionInput.selectedSegmentIndex = (Int(questionData[5]) ?? 1) - 1
     }
     @IBAction func titleChanged(_ sender: Any) {
         let newTitle = titleInput.text
@@ -62,14 +66,46 @@ class CreateScreenViewController: UIViewController {
         
     }
     @IBAction func finishQuiz(_ sender: Any) {
-        print(self.quiz)
+        guard let serviceUrl = URL(string: "http://localhost:8070/submit-quiz") else {return}
+        var request = URLRequest(url: serviceUrl)
+        request.httpMethod = "POST"
+        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: self.quiz, options: []) else{
+            return
+        }
+        print(httpBody)
+        request.httpBody = httpBody
+        request.timeoutInterval = 20
+        let session = URLSession.shared
+        session.dataTask(with: request){(data, response, error) in
+            if let response = response{
+                print(response)
+            }
+            if let data = data{
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch{
+                    print(error)
+                }
+            }
+        }.resume()
+        
     }
     @IBAction func nextQuestion(_ sender: Any) {
         self.currentQuestionEditing += 1
-        if self.currentQuestionEditing > self.quiz.count {
+        if self.currentQuestionEditing >= self.quiz.count {
             self.quiz.append(["empty", "empty", "empty", "empty", "empty", "1"])
         }
         self.displayNewQuestion()
     }
+    @IBAction func previousQuestion(_ sender: Any) {
+        if(self.currentQuestionEditing > 1){
+            self.currentQuestionEditing -= 1
+            self.displayNewQuestion()
+            print("previous")
+        }
+    }
+    
     
 }

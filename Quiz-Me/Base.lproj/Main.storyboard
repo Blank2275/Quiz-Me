@@ -190,6 +190,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="question4Edited:" destination="aRh-oO-W4b" eventType="editingDidEnd" id="6Iz-GP-AeP"/>
+                                            <action selector="question4Edited:" destination="aRh-oO-W4b" eventType="editingChanged" id="B2F-C2-bbq"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -206,6 +207,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="question3Edited:" destination="aRh-oO-W4b" eventType="editingDidEnd" id="Fmz-q6-2fY"/>
+                                            <action selector="question3Edited:" destination="aRh-oO-W4b" eventType="editingChanged" id="xVP-9s-vpd"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -221,7 +223,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="question2Edited:" destination="aRh-oO-W4b" eventType="editingDidEnd" id="kKl-0k-RIU"/>
+                                            <action selector="question2Edited:" destination="aRh-oO-W4b" eventType="editingDidEnd" id="vau-O6-vH9"/>
+                                            <action selector="question2Edited:" destination="aRh-oO-W4b" eventType="editingChanged" id="zn9-c0-ouX"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -237,6 +240,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
+                                            <action selector="question1Edited:" destination="aRh-oO-W4b" eventType="editingChanged" id="VQm-kG-NEk"/>
                                             <action selector="question1Edited:" destination="aRh-oO-W4b" eventType="editingDidEnd" id="mNL-9A-Ho0"/>
                                         </connections>
                                     </textField>
@@ -260,6 +264,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="questionTitleChanged:" destination="aRh-oO-W4b" eventType="editingDidEnd" id="C3U-qn-kf1"/>
+                                    <action selector="questionTitleChanged:" destination="aRh-oO-W4b" eventType="editingChanged" id="HaD-g5-duJ"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0N-V8-fYT">
@@ -274,6 +279,9 @@
                                 <rect key="frame" x="20" y="448" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="previousQuestion:" destination="aRh-oO-W4b" eventType="touchUpInside" id="pbU-nR-1TM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4T-KF-K4K">
                                 <rect key="frame" x="120" y="448" width="174" height="30"/>

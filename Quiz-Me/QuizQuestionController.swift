@@ -18,13 +18,15 @@ class QuizQuestionController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentQuestion = 0
-        self.loadQuestion()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            self.loadQuestion()
+        })
 
     }
     func loadQuestion(){
         self.question.text = data[selectedQuiz][0][0]
         self.titleLabel.text = data[selectedQuiz][currentQuestion + 1][0]
-        var question = data[selectedQuiz][currentQuestion + 1]
+        let question = data[selectedQuiz][currentQuestion + 1]
         self.answer1.setTitle(question[1], for: .normal)
         self.answer2.setTitle(question[2], for: .normal)
         self.answer3.setTitle(question[3], for: .normal)
@@ -43,7 +45,7 @@ class QuizQuestionController: UIViewController {
         self.handleAnswer(num: 3)
     }
     func handleAnswer(num: Int){
-        var question = data[selectedQuiz][currentQuestion + 1]
+        let question = data[selectedQuiz][currentQuestion + 1]
         answersCorrect.append(question[num + 1] == question[Int(question[5]) ?? 0])
         print(question[num + 1])
         if(currentQuestion < data[selectedQuiz].count - 2){

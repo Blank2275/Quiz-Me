@@ -15,7 +15,7 @@ var currentQuestion = 0
 var answersCorrect: [Bool] = []
 
 class ViewController: UIViewController{
-    let server = "http://localhost:8070"
+    let server = "http://localhost:8070/"
     
     override func viewDidLoad() {
         super.viewDidLoad()

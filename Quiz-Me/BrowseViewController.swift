@@ -9,10 +9,30 @@ import UIKit
 import Firebase
 
 class BrowseViewController: UITableViewController {
-    
+    let server = "http://localhost:8070/"
     override func viewDidLoad() {
-        super.viewDidLoad()
-        print(data)
+        guard let url = URL(string: server) else {return}
+        var parsedArray:[[[String]]]?
+        let task = URLSession.shared.dataTask(with: url){d, response, error in
+            if let error = error{
+                print(error)
+                return
+            }
+            guard let data_ = d else {return}
+            guard let dataString = String(data: data_, encoding: .utf8) else {return}
+                
+            do{
+                parsedArray = try? JSONSerialization.jsonObject(with: data_, options: []) as? [[[String]]]
+                
+            } catch let error as NSError{
+                print(error)
+            }
+        }
+        task.resume()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            data = parsedArray!
+            super.viewDidLoad()
+        })
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
