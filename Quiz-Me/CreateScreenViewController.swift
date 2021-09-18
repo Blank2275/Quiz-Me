@@ -69,30 +69,10 @@ class CreateScreenViewController: UIViewController {
         
     }
     @IBAction func finishQuiz(_ sender: Any) {
-        guard let serviceUrl = URL(string: "\(currentURL)submit-quiz") else {return}
-        var request = URLRequest(url: serviceUrl)
-        request.httpMethod = "POST"
-        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: self.quiz, options: []) else{
+        guard let stringQuiz = try? JSONSerialization.data(withJSONObject: self.quiz, options: []) else{
             return
         }
-        print(httpBody)
-        request.httpBody = httpBody
-        request.timeoutInterval = 20
-        let session = URLSession.shared
-        session.dataTask(with: request){(data, response, error) in
-            if let response = response{
-                print(response)
-            }
-            if let data = data{
-                do{
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                } catch{
-                    print(error)
-                }
-            }
-        }.resume()
+        postData(path: "submit-quiz", data: stringQuiz, text: nil){_ in}
         
     }
     @IBAction func nextQuestion(_ sender: Any) {

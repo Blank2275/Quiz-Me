@@ -27,9 +27,14 @@ class SignUpViewController: UIViewController {
                 if error != nil {print(error)}
                 if authError != nil {print(authError)}
                 
+                postData(path: "new-user", data: nil, text: usernameText){_ in
+                    
+                }
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeViewController = storyboard.instantiateViewController(identifier: "Home View")
                 self.dismiss(animated: true, completion: nil)
+                
             })
         }
     }

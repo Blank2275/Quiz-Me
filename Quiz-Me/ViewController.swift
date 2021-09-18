@@ -13,6 +13,7 @@ var data: [[[String]]] = []
 var selectedQuiz = 0
 var currentQuestion = 0
 var answersCorrect: [Bool] = []
+var likesDislikes:[String: String] = [:]
 
 let testing = true
 let testingURL = "http://localhost:8070/"
@@ -36,6 +37,34 @@ func getData(path: String, completionHandler: @escaping(_ data: Data) -> ()) -> 
     return data
 }
 
+func postData(path:String, data: Data?, text:String?, completionHandler: @escaping(_ data: Data) -> ()){
+    guard let serviceUrl = URL(string: "\(currentURL)\(path)") else {return}
+    var request = URLRequest(url: serviceUrl)
+    request.httpMethod = "POST"
+    request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+    
+    var httpBody = data
+    if text != nil{
+        httpBody = text?.data(using: .utf8)
+    }
+    
+    request.httpBody = httpBody
+    request.timeoutInterval = 20
+    let session = URLSession.shared
+    session.dataTask(with: request){(data, response, error) in
+        if let response = response{
+            //print(response)
+        }
+        if let data = data{
+            do{
+                completionHandler(data)
+            } catch{
+                print(error)
+            }
+        }
+    }.resume()
+}
+
 class ViewController: UIViewController{
     let server = currentURL
     @IBOutlet weak var logOutButton: UIButton!
@@ -57,6 +86,17 @@ class ViewController: UIViewController{
         var parsedArray:[[[String]]]! = []
          getData(path: ""){data_ in
             parsedArray = try? JSONSerialization.jsonObject(with: data_, options: []) as? [[[String]]]
+        }
+        var email = Auth.auth().currentUser?.email
+        postData(path: "get-likes-dislikes", data: nil, text: email){data_ in
+            let likesDislikesUnformatted = try! JSONSerialization.jsonObject(with: data_, options: []) as! [String : [String]]
+            print(likesDislikesUnformatted["likedPosts"])
+            for like in likesDislikesUnformatted["likedPosts"]!{
+                likesDislikes[like] = "true"
+            }
+            for dislike in likesDislikesUnformatted["dislikedPosts"]!{
+                likesDislikes[dislike] = "false"
+            }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             data = parsedArray ?? []

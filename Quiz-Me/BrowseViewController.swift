@@ -8,7 +8,66 @@
 import UIKit
 import Firebase
 
-class BrowseViewController: UITableViewController {
+class BrowseViewController: UITableViewController, CellDelegate {
+    var defaultColor = UIColor.red;
+    var disabledColor = UIColor.gray;
+    let email = Auth.auth().currentUser?.email
+    func like(_ cell: BrowseCell) {
+        cell.dislikeButton.backgroundColor = UIColor.red
+        cell.likeButton.backgroundColor = UIColor.gray
+        
+        let index = self.tableView.indexPath(for: cell)![1]
+        let nameOfLikedPost = data[index][0][0]
+        if likesDislikes[nameOfLikedPost] != "true" {
+            var unDislike = "false"
+            if likesDislikes[nameOfLikedPost] == "false"{
+                unDislike = "true"
+                data[index][data[index].count - 1][1] = String((Int(data[index][data[index].count - 1][1]) ?? 1) - 1)
+            }
+            data[index][data[index].count - 1][0] = String((Int(data[index][data[index].count - 1][0]) ?? 1) + 1)
+            if likesDislikes[nameOfLikedPost] == nil || likesDislikes[nameOfLikedPost] == "false"{
+                likesDislikes[nameOfLikedPost] = "true"
+                guard let data_ = try? JSONSerialization.data(withJSONObject: [unDislike, nameOfLikedPost, email], options: []) else{
+                    return
+                }
+                postData(path: "like", data: data_, text: nil){_ in
+                    
+                }
+                print("like")
+            }
+            
+            cell.likeCounter.text = data[index][data[index].count - 1][0]
+            cell.dislikeCounter.text = data[index][data[index].count - 1][1]
+        }
+    }
+    
+    func dislike(_ cell: BrowseCell) {
+        cell.dislikeButton.backgroundColor = UIColor.gray
+        cell.likeButton.backgroundColor = UIColor.red
+        
+        let index = self.tableView.indexPath(for: cell)![1]
+        let nameOfDislikedPost = data[index][0][0]
+        if likesDislikes[nameOfDislikedPost] != "false" {
+            var unLike = "false"
+            if likesDislikes[nameOfDislikedPost] == "true"{
+                unLike = "true"
+                data[index][data[index].count - 1][0] = String((Int(data[index][data[index].count - 1][0]) ?? 1) - 1)
+            }
+            data[index][data[index].count - 1][1] = String((Int(data[index][data[index].count - 1][1]) ?? 1) + 1)
+
+            if likesDislikes[nameOfDislikedPost] == nil || likesDislikes[nameOfDislikedPost] == "true"{
+                likesDislikes[nameOfDislikedPost] = "false"
+                guard let data_ = try? JSONSerialization.data(withJSONObject: [unLike, nameOfDislikedPost, email], options: []) else{
+                    return
+                }
+                postData(path: "dislike", data: data_, text: nil){_ in
+                }
+            }
+            cell.likeCounter.text = data[index][data[index].count - 1][0]
+            cell.dislikeCounter.text = data[index][data[index].count - 1][1]
+        }
+    }
+    
     let server = "\(currentURL)"
     let navController = UINavigationController()
     override func viewDidLoad() {
@@ -24,6 +83,7 @@ class BrowseViewController: UITableViewController {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             data = parsedArray ?? []
+            self.tableView.reloadData()
         })
         
         // Uncomment the following line to preserve selection between presentations
@@ -51,6 +111,20 @@ class BrowseViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "BrowseCell", for: indexPath) as? BrowseCell{
             cell.quizName?.text = data[indexPath.row][0][0]
+            cell.delegate = self
+            var likeEnable = true
+            var dislikeEnable = true
+            if likesDislikes[data[indexPath.row][0][0]] != nil {
+                if likesDislikes[data[indexPath.row][0][0]] == "true"{
+                    likeEnable = false
+                } else{
+                    dislikeEnable = false
+                }
+            }
+            cell.likeButton.backgroundColor = likeEnable ? self.defaultColor : self.disabledColor
+            cell.dislikeButton.backgroundColor = dislikeEnable ? self.defaultColor : self.disabledColor
+            cell.likeCounter.text = data[indexPath.row][data[indexPath.row].count - 1][0]
+            cell.dislikeCounter.text = data[indexPath.row][data[indexPath.row].count - 1][1]
             return cell as! BrowseCell
         }
         print(BrowseCell())
