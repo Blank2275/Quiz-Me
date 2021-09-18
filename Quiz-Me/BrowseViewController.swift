@@ -10,28 +10,20 @@ import Firebase
 
 class BrowseViewController: UITableViewController {
     let server = "\(currentURL)"
+    let navController = UINavigationController()
     override func viewDidLoad() {
-        guard let url = URL(string: server) else {return}
-        var parsedArray:[[[String]]]?
-        let task = URLSession.shared.dataTask(with: url){d, response, error in
-            if let error = error{
-                print(error)
-                return
-            }
-            guard let data_ = d else {return}
-            guard let dataString = String(data: data_, encoding: .utf8) else {return}
-                
-            do{
-                parsedArray = try? JSONSerialization.jsonObject(with: data_, options: []) as? [[[String]]]
-                
-            } catch let error as NSError{
-                print(error)
-            }
+        super.viewDidLoad()
+        self.registerTableViewCells()
+        if Auth.auth().currentUser?.uid == nil{
+            print("dismiss")
+            dismiss(animated: true, completion:nil)
         }
-        task.resume()
+        var parsedArray:[[[String]]]! = []
+         getData(path: ""){data_ in
+            parsedArray = try? JSONSerialization.jsonObject(with: data_, options: []) as? [[[String]]]
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            data = parsedArray!
-            super.viewDidLoad()
+            data = parsedArray ?? []
         })
         
         // Uncomment the following line to preserve selection between presentations
@@ -40,7 +32,10 @@ class BrowseViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    private func registerTableViewCells(){
+        let tableViewCell = UINib(nibName: "BrowseCell", bundle: nil)
+        self.tableView.register(tableViewCell, forCellReuseIdentifier:"BrowseCell")
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -54,12 +49,13 @@ class BrowseViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "BrowseCell", for: indexPath) as? BrowseCell{
+            cell.quizName?.text = data[indexPath.row][0][0]
+            return cell as! BrowseCell
+        }
+        print(BrowseCell())
         // Configure the cell...
-        cell.textLabel?.text = data[indexPath.row][0][0]
-        cell.detailTextLabel?.text = ""
-        return cell
+        return UITableViewCell()
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedQuiz = indexPath.row
@@ -70,7 +66,9 @@ class BrowseViewController: UITableViewController {
 
         show(secondVC, sender: self)
     }
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(100)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

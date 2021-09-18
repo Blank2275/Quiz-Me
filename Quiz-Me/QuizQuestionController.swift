@@ -48,7 +48,7 @@ class QuizQuestionController: UIViewController {
         let question = data[selectedQuiz][currentQuestion + 1]
         answersCorrect.append((num + 1) == Int(question[5]))
         print(question[num + 1])
-        if(currentQuestion < data[selectedQuiz].count - 2){
+        if(currentQuestion < data[selectedQuiz].count - 3){
             currentQuestion += 1
             self.loadQuestion()
         } else{

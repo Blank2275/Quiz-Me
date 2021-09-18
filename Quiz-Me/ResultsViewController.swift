@@ -18,7 +18,7 @@ class ResultsViewController: UIViewController {
             total += question ? 1 : 0
         }
         print(answersCorrect)
-        var percent:Float = Float(total / (data[selectedQuiz].count - 1))
+        var percent:Float = Float(total / (data[selectedQuiz].count - 2))
         var pass = percent >= 0.75 ? true : false;
         if pass {
             self.view.backgroundColor = UIColor.green
@@ -27,7 +27,7 @@ class ResultsViewController: UIViewController {
             self.view.backgroundColor = UIColor.red
             self.passFail.text = "Fail :("
         }
-        self.score.text = "Score: \(total) / \(data[selectedQuiz].count - 1)"
+        self.score.text = "Score: \(total) / \(data[selectedQuiz].count - 2)"
         
         // Do any additional setup after loading the view.
     }

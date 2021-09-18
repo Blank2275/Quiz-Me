@@ -147,7 +147,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aRh-oO-W4b" kind="show" id="IPw-Jf-qfz"/>
+                                    <segue destination="aRh-oO-W4b" kind="show" identifier="CreateScreen" id="IPw-Jf-qfz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g51-Mg-IsW">
@@ -159,13 +159,26 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="VIv-A6-Ftu" kind="show" id="LEV-Xc-PJw"/>
+                                    <segue destination="VIv-A6-Ftu" kind="show" identifier="BrowseViewController" id="LEV-Xc-PJw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4m-qm-nau">
+                                <rect key="frame" x="168" y="43" width="78" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p4c-ct-i66"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="logOutButton" destination="g4m-qm-nau" id="UZi-MG-Udh"/>
+                        <outlet property="signInbutton" destination="Q7M-GM-RWp" id="88s-HJ-w8o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -334,28 +347,29 @@
         <!--Browse View Controller-->
         <scene sceneID="KgG-ai-UM3">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dk1-wq-J9M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="VIv-A6-Ftu" customClass="BrowseViewController" customModule="Quiz_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cC7-Ub-GOo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="hb0-sb-GoG" detailTextLabel="SkQ-fl-qYb" style="IBUITableViewCellStyleValue2" id="xfm-hg-E3e">
-                                <rect key="frame" x="0.0" y="24.5" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="hb0-sb-GoG" detailTextLabel="SkQ-fl-qYb" rowHeight="101" style="IBUITableViewCellStyleValue2" id="xfm-hg-E3e">
+                                <rect key="frame" x="0.0" y="24.5" width="375" height="101"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xfm-hg-E3e" id="yLP-Ba-0on">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hb0-sb-GoG">
-                                            <rect key="frame" x="16" y="15" width="91" height="14.5"/>
+                                            <rect key="frame" x="16" y="44" width="91" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SkQ-fl-qYb">
-                                            <rect key="frame" x="113" y="15" width="33" height="14.5"/>
+                                            <rect key="frame" x="113" y="44" width="33" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -375,9 +389,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="d7n-o1-R3E"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dk1-wq-J9M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="854" y="74"/>
+            <point key="canvasLocation" x="853.60000000000002" y="73.313343328335833"/>
         </scene>
         <!--Quiz Question Controller-->
         <scene sceneID="bGD-Q1-lma">

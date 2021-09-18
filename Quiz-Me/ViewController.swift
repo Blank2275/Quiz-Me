@@ -14,37 +14,52 @@ var selectedQuiz = 0
 var currentQuestion = 0
 var answersCorrect: [Bool] = []
 
-let testing = false
+let testing = true
 let testingURL = "http://localhost:8070/"
 let productionURL = "https://quiz-me-backend-connor.herokuapp.com/"
 let currentURL = testing ? testingURL : productionURL
 
+func getData(path: String, completionHandler: @escaping(_ data: Data) -> ()) -> Data?{
+    guard let url = URL(string: "\(currentURL)\(path)") else {return nil}
+    var parsedArray:[[[String]]]! = []
+    var data:Data?
+    let task = URLSession.shared.dataTask(with: url){d, response, error in
+        if let error = error{
+            print(error)
+        }
+        guard let data_ = d else {return}
+        guard let dataString = String(data: data_, encoding: .utf8) else {return}
+        data = data_
+        completionHandler(data_)
+    }
+    task.resume()
+    return data
+}
+
 class ViewController: UIViewController{
     let server = currentURL
+    @IBOutlet weak var logOutButton: UIButton!
+    @IBOutlet weak var signInbutton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         FirebaseApp.configure()
-        guard let url = URL(string: server) else {return}
-        var parsedArray:[[[String]]]?
-        let task = URLSession.shared.dataTask(with: url){d, response, error in
-            if let error = error{
-                print(error)
-                return
-            }
-            guard let data_ = d else {return}
-            guard let dataString = String(data: data_, encoding: .utf8) else {return}
-                
-            do{
-                parsedArray = try? JSONSerialization.jsonObject(with: data_, options: []) as? [[[String]]]
-                
-            } catch let error as NSError{
-                print(error)
+
+        Auth.auth().addStateDidChangeListener(){auth, user in
+            if user == nil{
+                self.logOutButton.isEnabled = false
+                self.signInbutton.isEnabled = true
+            } else{
+                self.logOutButton.isEnabled = true
+                self.signInbutton.isEnabled = false
             }
         }
-        task.resume()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            data = parsedArray!
+        var parsedArray:[[[String]]]! = []
+         getData(path: ""){data_ in
+            parsedArray = try? JSONSerialization.jsonObject(with: data_, options: []) as? [[[String]]]
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            data = parsedArray ?? []
         })
         /*
         let db = Firestore.firestore()
@@ -76,7 +91,19 @@ class ViewController: UIViewController{
         */
         // Do any additional setup after loading the view.
     }
-
+    @IBAction func logOut(_ sender: Any) {
+        if Auth.auth() != nil {
+            try! Auth.auth().signOut()
+        }
+    }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "BrowseViewController" || identifier == "CreateScreen"{
+            if Auth.auth().currentUser?.uid == nil{
+                return false
+            }
+        }
+        return true
+    }
 
 }
 
