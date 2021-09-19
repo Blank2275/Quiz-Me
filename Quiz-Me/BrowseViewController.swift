@@ -8,6 +8,25 @@
 import UIKit
 import Firebase
 
+func fetchQuizData(completionHandler: @escaping(_ data: [[[String]]]) -> ()){
+    data = []
+    var parsedArray:[[[String]]]? = nil
+        getData(path: ""){data_ in
+            parsedArray = try? JSONSerialization.jsonObject(with: data_ ?? Data.init(), options: []) as? [[[String]]]
+            if(data_ == nil){
+                data = parsedArray ?? []
+                if(data_ == nil){
+                    print("tried again");
+                    fetchQuizData(){d in
+                        data = d
+                    }
+                }
+                completionHandler(parsedArray ?? [])
+            }
+            completionHandler(parsedArray ?? [])
+       }
+}
+
 class BrowseViewController: UITableViewController, CellDelegate {
     var defaultColor = UIColor.red;
     var disabledColor = UIColor.gray;
@@ -33,7 +52,6 @@ class BrowseViewController: UITableViewController, CellDelegate {
                 postData(path: "like", data: data_, text: nil){_ in
                     
                 }
-                print("like")
             }
             
             cell.likeCounter.text = data[index][data[index].count - 1][0]
@@ -74,23 +92,14 @@ class BrowseViewController: UITableViewController, CellDelegate {
         super.viewDidLoad()
         self.registerTableViewCells()
         if Auth.auth().currentUser?.uid == nil{
-            print("dismiss")
             dismiss(animated: true, completion:nil)
         }
-        var parsedArray:[[[String]]]! = []
-         getData(path: ""){data_ in
-            parsedArray = try? JSONSerialization.jsonObject(with: data_, options: []) as? [[[String]]]
+        fetchQuizData(){d in
+            data = d
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            data = parsedArray ?? []
-            self.tableView.reloadData()
-        })
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     private func registerTableViewCells(){
         let tableViewCell = UINib(nibName: "BrowseCell", bundle: nil)

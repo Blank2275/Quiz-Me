@@ -20,8 +20,9 @@ let testingURL = "http://localhost:8070/"
 let productionURL = "https://quiz-me-backend-connor.herokuapp.com/"
 let currentURL = testing ? testingURL : productionURL
 
-func getData(path: String, completionHandler: @escaping(_ data: Data) -> ()) -> Data?{
+func getData(path: String, completionHandler: @escaping(_ data: Data?) -> ()) -> Data?{
     guard let url = URL(string: "\(currentURL)\(path)") else {return nil}
+    print("url not nil")
     var parsedArray:[[[String]]]! = []
     var data:Data?
     let task = URLSession.shared.dataTask(with: url){d, response, error in
@@ -30,8 +31,8 @@ func getData(path: String, completionHandler: @escaping(_ data: Data) -> ()) -> 
         }
         guard let data_ = d else {return}
         guard let dataString = String(data: data_, encoding: .utf8) else {return}
-        data = data_
-        completionHandler(data_)
+        data = d
+        completionHandler(d)
     }
     task.resume()
     return data
@@ -85,12 +86,11 @@ class ViewController: UIViewController{
         }
         var parsedArray:[[[String]]]! = []
          getData(path: ""){data_ in
-            parsedArray = try? JSONSerialization.jsonObject(with: data_, options: []) as? [[[String]]]
+            parsedArray = try? JSONSerialization.jsonObject(with: data_ ?? Data.init(), options: []) as? [[[String]]]
         }
-        var email = Auth.auth().currentUser?.email
+        let email = Auth.auth().currentUser?.email
         postData(path: "get-likes-dislikes", data: nil, text: email){data_ in
             let likesDislikesUnformatted = try! JSONSerialization.jsonObject(with: data_, options: []) as! [String : [String]]
-            print(likesDislikesUnformatted["likedPosts"])
             for like in likesDislikesUnformatted["likedPosts"]!{
                 likesDislikes[like] = "true"
             }
