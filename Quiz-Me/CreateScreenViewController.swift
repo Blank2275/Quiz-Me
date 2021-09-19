@@ -72,6 +72,7 @@ class CreateScreenViewController: UIViewController {
         guard let stringQuiz = try? JSONSerialization.data(withJSONObject: self.quiz, options: []) else{
             return
         }
+        dismiss(animated: true, completion: nil)
         postData(path: "submit-quiz", data: stringQuiz, text: nil){_ in}
         
     }
