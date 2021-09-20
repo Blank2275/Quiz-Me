@@ -8,18 +8,15 @@
 import UIKit
 import Firebase
 
-func fetchQuizData(completionHandler: @escaping(_ data: [[[String]]]) -> ()){
+func fetchQuizData(completionHandler: @escaping(_ data_: [[[String]]]) -> ()){
     data = []
     var parsedArray:[[[String]]]? = nil
-        getData(path: ""){data_ in
-            parsedArray = try? JSONSerialization.jsonObject(with: data_ ?? Data.init(), options: []) as? [[[String]]]
-            if(data_ == nil){
-                data = parsedArray ?? []
-                if(data_ == nil){
-                    print("tried again");
-                    fetchQuizData(){d in
-                        data = d
-                    }
+        getData(path: ""){d in
+            print(d ?? Data.init())
+            parsedArray = try! JSONSerialization.jsonObject(with: d ?? Data.init(), options: []) as! [[[String]]]
+            if(parsedArray == nil){
+                print("tried again");
+                fetchQuizData(){d in
                 }
                 completionHandler(parsedArray ?? [])
             }
@@ -136,7 +133,6 @@ class BrowseViewController: UITableViewController, CellDelegate {
             cell.dislikeCounter.text = data[indexPath.row][data[indexPath.row].count - 1][1]
             return cell as! BrowseCell
         }
-        print(BrowseCell())
         // Configure the cell...
         return UITableViewCell()
     }

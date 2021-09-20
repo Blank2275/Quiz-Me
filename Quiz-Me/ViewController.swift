@@ -20,9 +20,8 @@ let testingURL = "http://localhost:8070/"
 let productionURL = "https://quiz-me-backend-connor.herokuapp.com/"
 let currentURL = testing ? testingURL : productionURL
 
-func getData(path: String, completionHandler: @escaping(_ data: Data?) -> ()) -> Data?{
+func getData(path: String, completionHandler: @escaping(_ d: Data?) -> ()) -> Data?{
     guard let url = URL(string: "\(currentURL)\(path)") else {return nil}
-    print("url not nil")
     var parsedArray:[[[String]]]! = []
     var data:Data?
     let task = URLSession.shared.dataTask(with: url){d, response, error in

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateScreenViewController: UIViewController {
+class CreateScreenViewController:UIViewController{
     @IBOutlet weak var titleInput: UITextField!
     @IBOutlet weak var questionNameInput: UITextField!
     @IBOutlet weak var question1Input: UITextField!
@@ -27,7 +27,31 @@ class CreateScreenViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+        
+        //scroll up on editing code from https://fluffy.es/move-view-when-keyboard-is-shown/
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         // Do any additional setup after loading the view.
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+           // if keyboard size is not available for some reason, dont do anything
+           return
+        }
+      
+      // move the root view up by the distance of keyboard height
+        let input1Focused = self.question1Input.isEditing
+        let input2Focused = self.question2Input.isEditing
+        let input3Focused = self.question3Input.isEditing
+        let input4Focused = self.question4Input.isEditing
+        if(input1Focused || input2Focused || input3Focused || input4Focused){
+            self.view.frame.origin.y = 0 - keyboardSize.height
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+      // move back the root view origin to zero
+      self.view.frame.origin.y = 0
     }
     func displayNewQuestion(){
         let questionData = self.quiz[self.currentQuestionEditing]

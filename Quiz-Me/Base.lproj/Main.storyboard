@@ -347,7 +347,6 @@
         <!--Browse View Controller-->
         <scene sceneID="KgG-ai-UM3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dk1-wq-J9M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tableViewController id="VIv-A6-Ftu" customClass="BrowseViewController" customModule="Quiz_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cC7-Ub-GOo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
@@ -389,6 +388,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="d7n-o1-R3E"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dk1-wq-J9M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="853.60000000000002" y="73.313343328335833"/>
         </scene>
