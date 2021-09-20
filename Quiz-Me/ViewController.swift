@@ -138,6 +138,10 @@ class ViewController: UIViewController{
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "BrowseViewController" || identifier == "CreateScreen"{
             if Auth.auth().currentUser?.uid == nil{
+                let alertController = UIAlertController(title: "Quiz Me", message: "Please sign in to use this feature", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+                self.present(alertController, animated: true, completion: nil)
+                
                 return false
             }
         }
