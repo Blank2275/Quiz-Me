@@ -15,7 +15,7 @@ var currentQuestion = 0
 var answersCorrect: [Bool] = []
 var likesDislikes:[String: String] = [:]
 
-let testing = false
+let testing = true
 let testingURL = "http://localhost:8070/"
 let productionURL = "https://quiz-me-backend-connor.herokuapp.com/"
 let currentURL = testing ? testingURL : productionURL

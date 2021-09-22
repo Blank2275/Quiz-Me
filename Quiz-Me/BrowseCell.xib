@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -16,15 +16,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="668" height="101"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-aB-43G">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-aB-43G">
                         <rect key="frame" x="16" y="11" width="298" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cye-za-eov">
-                        <rect key="frame" x="561" y="12" width="30" height="31"/>
+                        <rect key="frame" x="557" y="12" width="30" height="31"/>
                         <color key="backgroundColor" red="0.92133218049999999" green="0.38630671770000002" blue="0.34308293880000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                         <state key="normal" title="⇧">
@@ -35,7 +34,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duB-LR-k93">
-                        <rect key="frame" x="601" y="12" width="31" height="31"/>
+                        <rect key="frame" x="597" y="12" width="31" height="31"/>
                         <color key="backgroundColor" red="0.92133218049999999" green="0.38630671770000002" blue="0.34308293880000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                         <state key="normal" title="⇩">
@@ -46,28 +45,38 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYH-Qc-Rj6">
-                        <rect key="frame" x="603.5" y="50" width="8.5" height="16"/>
+                        <rect key="frame" x="599.66666666666663" y="50" width="8.3333333333333712" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="es7-3U-ca0">
-                        <rect key="frame" x="565" y="50" width="8.5" height="16"/>
+                        <rect key="frame" x="561" y="50" width="8.6666666666666288" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axE-sl-Ea9">
+                        <rect key="frame" x="97" y="55" width="418" height="30"/>
+                        <color key="backgroundColor" red="0.99607843159999998" green="0.33725491169999999" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="duB-LR-k93" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="8Mh-E4-5df"/>
                     <constraint firstItem="duB-LR-k93" firstAttribute="leading" secondItem="cye-za-eov" secondAttribute="trailing" constant="10" id="BGR-60-WRg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UYH-Qc-Rj6" secondAttribute="trailing" constant="40" id="DVN-Ty-IDs"/>
+                    <constraint firstItem="cye-za-eov" firstAttribute="leading" secondItem="axE-sl-Ea9" secondAttribute="trailing" constant="47" id="MiU-iG-5gB"/>
                     <constraint firstItem="UYH-Qc-Rj6" firstAttribute="leading" secondItem="es7-3U-ca0" secondAttribute="trailing" constant="30" id="NgA-pA-bus"/>
                     <constraint firstItem="UYH-Qc-Rj6" firstAttribute="top" secondItem="duB-LR-k93" secondAttribute="bottom" constant="7" id="OSH-Le-HPs"/>
                     <constraint firstAttribute="bottomMargin" secondItem="es7-3U-ca0" secondAttribute="bottom" constant="24" id="RK0-uy-d4S"/>
                     <constraint firstItem="es7-3U-ca0" firstAttribute="top" secondItem="cye-za-eov" secondAttribute="bottom" constant="7" id="VFf-pw-Y6k"/>
                     <constraint firstAttribute="bottomMargin" secondItem="UYH-Qc-Rj6" secondAttribute="bottom" constant="24" id="W2a-hN-lLe"/>
                     <constraint firstItem="cye-za-eov" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="WZz-MR-056"/>
+                    <constraint firstItem="axE-sl-Ea9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="92" id="apT-8r-mnx"/>
+                    <constraint firstItem="axE-sl-Ea9" firstAttribute="top" secondItem="gjE-aB-43G" secondAttribute="bottom" constant="13" id="eAi-oN-Vmj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="duB-LR-k93" secondAttribute="trailing" constant="20" id="seo-5m-MZ3"/>
                 </constraints>
             </tableViewCellContentView>
@@ -75,13 +84,14 @@
             <accessibility key="accessibilityConfiguration" identifier="BrowseCell"/>
             <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.94999999999999996"/>
             <connections>
+                <outlet property="creatorButton" destination="axE-sl-Ea9" id="0al-tc-3En"/>
                 <outlet property="dislikeButton" destination="duB-LR-k93" id="1va-nJ-qex"/>
                 <outlet property="dislikeCounter" destination="UYH-Qc-Rj6" id="Icy-g2-HGP"/>
                 <outlet property="likeButton" destination="cye-za-eov" id="bXa-hp-KB7"/>
                 <outlet property="likeCounter" destination="es7-3U-ca0" id="3qQ-M1-EHc"/>
                 <outlet property="quizName" destination="gjE-aB-43G" id="WDa-k7-l9p"/>
             </connections>
-            <point key="canvasLocation" x="301.7578125" y="113.98243045387993"/>
+            <point key="canvasLocation" x="301.40186915887847" y="113.71490280777539"/>
         </tableViewCell>
     </objects>
 </document>

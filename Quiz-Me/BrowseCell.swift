@@ -17,6 +17,7 @@ class BrowseCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var upvoteCounter: UILabel!
     @IBOutlet weak var dislikeCounter: UILabel!
+    @IBOutlet weak var creatorButton: UIButton!
     
     @IBOutlet weak var likeCounter: UILabel!
     weak var delegate: CellDelegate?

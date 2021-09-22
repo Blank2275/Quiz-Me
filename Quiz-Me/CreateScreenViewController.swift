@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateScreenViewController:UIViewController{
     @IBOutlet weak var titleInput: UITextField!
@@ -93,6 +94,8 @@ class CreateScreenViewController:UIViewController{
         
     }
     @IBAction func finishQuiz(_ sender: Any) {
+        let email = Auth.auth().currentUser?.email
+        self.quiz.append([email ?? ""])
         guard let stringQuiz = try? JSONSerialization.data(withJSONObject: self.quiz, options: []) else{
             return
         }

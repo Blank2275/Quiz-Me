@@ -269,6 +269,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="titleChange:" destination="i0O-6Z-20i" eventType="editingDidEnd" id="Vuj-yv-ugf"/>
+                                    <action selector="titleChanged:" destination="aRh-oO-W4b" eventType="editingChanged" id="UtG-wm-dhX"/>
                                     <action selector="titleChanged:" destination="aRh-oO-W4b" eventType="editingDidEnd" id="XUo-h1-QGP"/>
                                 </connections>
                             </textField>

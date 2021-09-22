@@ -131,6 +131,7 @@ class BrowseViewController: UITableViewController, CellDelegate {
             cell.dislikeButton.backgroundColor = dislikeEnable ? self.defaultColor : self.disabledColor
             cell.likeCounter.text = data[indexPath.row][data[indexPath.row].count - 1][0]
             cell.dislikeCounter.text = data[indexPath.row][data[indexPath.row].count - 1][1]
+            cell.creatorButton.setTitle( data[indexPath.row][data[indexPath.row].count - 1][2], for: .normal)
             return cell as! BrowseCell
         }
         // Configure the cell...
