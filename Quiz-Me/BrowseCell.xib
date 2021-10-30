@@ -57,7 +57,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axE-sl-Ea9">
-                        <rect key="frame" x="97" y="55" width="418" height="30"/>
+                        <rect key="frame" x="20" y="55" width="46" height="30"/>
                         <color key="backgroundColor" red="0.99607843159999998" green="0.33725491169999999" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <state key="normal" title="Button">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -65,18 +65,17 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="axE-sl-Ea9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="2Nb-JO-bWm"/>
                     <constraint firstItem="duB-LR-k93" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="8Mh-E4-5df"/>
                     <constraint firstItem="duB-LR-k93" firstAttribute="leading" secondItem="cye-za-eov" secondAttribute="trailing" constant="10" id="BGR-60-WRg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UYH-Qc-Rj6" secondAttribute="trailing" constant="40" id="DVN-Ty-IDs"/>
-                    <constraint firstItem="cye-za-eov" firstAttribute="leading" secondItem="axE-sl-Ea9" secondAttribute="trailing" constant="47" id="MiU-iG-5gB"/>
+                    <constraint firstItem="axE-sl-Ea9" firstAttribute="top" secondItem="gjE-aB-43G" secondAttribute="bottom" constant="13" id="HFE-tk-8sq"/>
                     <constraint firstItem="UYH-Qc-Rj6" firstAttribute="leading" secondItem="es7-3U-ca0" secondAttribute="trailing" constant="30" id="NgA-pA-bus"/>
                     <constraint firstItem="UYH-Qc-Rj6" firstAttribute="top" secondItem="duB-LR-k93" secondAttribute="bottom" constant="7" id="OSH-Le-HPs"/>
                     <constraint firstAttribute="bottomMargin" secondItem="es7-3U-ca0" secondAttribute="bottom" constant="24" id="RK0-uy-d4S"/>
                     <constraint firstItem="es7-3U-ca0" firstAttribute="top" secondItem="cye-za-eov" secondAttribute="bottom" constant="7" id="VFf-pw-Y6k"/>
                     <constraint firstAttribute="bottomMargin" secondItem="UYH-Qc-Rj6" secondAttribute="bottom" constant="24" id="W2a-hN-lLe"/>
                     <constraint firstItem="cye-za-eov" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="WZz-MR-056"/>
-                    <constraint firstItem="axE-sl-Ea9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="92" id="apT-8r-mnx"/>
-                    <constraint firstItem="axE-sl-Ea9" firstAttribute="top" secondItem="gjE-aB-43G" secondAttribute="bottom" constant="13" id="eAi-oN-Vmj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="duB-LR-k93" secondAttribute="trailing" constant="20" id="seo-5m-MZ3"/>
                 </constraints>
             </tableViewCellContentView>

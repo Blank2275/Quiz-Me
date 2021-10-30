@@ -65,6 +65,20 @@ func postData(path:String, data: Data?, text:String?, completionHandler: @escapi
     }.resume()
 }
 
+func getUserData(){
+    let email = Auth.auth().currentUser?.email
+    postData(path: "get-user-data", data: nil, text: email){data_ in
+        let likesDislikesUnformatted = try! JSONSerialization.jsonObject(with: data_, options: []) as! [String : [String]]
+        for like in likesDislikesUnformatted["likedPosts"]!{
+            likesDislikes[like] = "true"
+        }
+        for dislike in likesDislikesUnformatted["dislikedPosts"]!{
+            likesDislikes[dislike] = "false"
+            print(dislike)
+        }
+    }
+}
+
 class ViewController: UIViewController{
     let server = currentURL
     @IBOutlet weak var logOutButton: UIButton!
@@ -87,16 +101,7 @@ class ViewController: UIViewController{
          getData(path: ""){data_ in
             parsedArray = try? JSONSerialization.jsonObject(with: data_ ?? Data.init(), options: []) as? [[[String]]]
         }
-        let email = Auth.auth().currentUser?.email
-        postData(path: "get-likes-dislikes", data: nil, text: email){data_ in
-            let likesDislikesUnformatted = try! JSONSerialization.jsonObject(with: data_, options: []) as! [String : [String]]
-            for like in likesDislikesUnformatted["likedPosts"]!{
-                likesDislikes[like] = "true"
-            }
-            for dislike in likesDislikesUnformatted["dislikedPosts"]!{
-                likesDislikes[dislike] = "false"
-            }
-        }
+        getUserData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             data = parsedArray ?? []
         })

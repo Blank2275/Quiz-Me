@@ -30,16 +30,7 @@ class SignUpViewController: UIViewController {
                 postData(path: "new-user", data: nil, text: usernameText){_ in
                     
                 }
-                let email = Auth.auth().currentUser?.email
-                postData(path: "get-likes-dislikes", data: nil, text: email){data_ in
-                    let likesDislikesUnformatted = try! JSONSerialization.jsonObject(with: data_, options: []) as! [String : [String]]
-                    for like in likesDislikesUnformatted["likedPosts"]!{
-                        likesDislikes[like] = "true"
-                    }
-                    for dislike in likesDislikesUnformatted["dislikedPosts"]!{
-                        likesDislikes[dislike] = "false"
-                    }
-                }
+                getUserData()
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeViewController = storyboard.instantiateViewController(identifier: "Home View")
                 self.dismiss(animated: true, completion: nil)
