@@ -13,7 +13,7 @@ func fetchQuizData(completionHandler: @escaping(_ data_: [[[String]]]) -> ()){
     var parsedArray:[[[String]]]? = nil
         getData(path: ""){d in
             print(d ?? Data.init())
-            parsedArray = try! JSONSerialization.jsonObject(with: d ?? Data.init(), options: []) as! [[[String]]]
+            parsedArray = try! JSONSerialization.jsonObject(with: d ?? Data.init(), options: []) as? [[[String]]]
             if(parsedArray == nil){
                 print("tried again");
                 fetchQuizData(){d in

@@ -20,6 +20,9 @@ let testingURL = "http://localhost:8070/"
 let productionURL = "https://quiz-me-backend-connor.herokuapp.com/"
 let currentURL = testing ? testingURL : productionURL
 
+var email = ""
+var username = ""
+
 func getData(path: String, completionHandler: @escaping(_ d: Data?) -> ()) -> Data?{
     guard let url = URL(string: "\(currentURL)\(path)") else {return nil}
     var parsedArray:[[[String]]]! = []
@@ -66,7 +69,7 @@ func postData(path:String, data: Data?, text:String?, completionHandler: @escapi
 }
 
 func getUserData(){
-    let email = Auth.auth().currentUser?.email
+    email = Auth.auth().currentUser?.email ?? "unknown"
     postData(path: "get-user-data", data: nil, text: email){data_ in
         let likesDislikesUnformatted = try! JSONSerialization.jsonObject(with: data_, options: []) as! [String : [String]]
         for like in likesDislikesUnformatted["likedPosts"]!{
@@ -76,6 +79,7 @@ func getUserData(){
             likesDislikes[dislike] = "false"
             print(dislike)
         }
+        username = likesDislikesUnformatted["username"]?[0] ?? "unknown"
     }
 }
 
