@@ -28,7 +28,10 @@ class SignInViewController: UIViewController, SignInDelegate {
         Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
             guard let strongSelf = self else {return}
             getUserData()
-            self?.dismiss(animated: true, completion: nil)
+            if Auth.auth().currentUser?.uid != nil{
+                self?.navigationController?.popViewController(animated: true)
+            }
+            
         })
     }
     

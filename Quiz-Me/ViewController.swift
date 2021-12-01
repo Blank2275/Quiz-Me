@@ -71,6 +71,7 @@ func postData(path:String, data: Data?, text:String?, completionHandler: @escapi
 func getUserData(){
     email = Auth.auth().currentUser?.email ?? "unknown"
     postData(path: "get-user-data", data: nil, text: email){data_ in
+        
         let likesDislikesUnformatted = try! JSONSerialization.jsonObject(with: data_, options: []) as! [String : [String]]
         for like in likesDislikesUnformatted["likedPosts"]!{
             likesDislikes[like] = "true"
