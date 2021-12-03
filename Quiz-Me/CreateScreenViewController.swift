@@ -95,11 +95,11 @@ class CreateScreenViewController:UIViewController{
     }
     @IBAction func finishQuiz(_ sender: Any) {
         let email = Auth.auth().currentUser?.email
-        self.quiz.append([email ?? ""])
+        self.quiz.append([email ?? "unknown"])
         guard let stringQuiz = try? JSONSerialization.data(withJSONObject: self.quiz, options: []) else{
             return
         }
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
         postData(path: "submit-quiz", data: stringQuiz, text: nil){_ in}
         
     }
