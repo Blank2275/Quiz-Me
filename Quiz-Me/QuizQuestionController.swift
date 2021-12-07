@@ -27,6 +27,7 @@ class QuizQuestionController: UIViewController {
         self.question.text = data[selectedQuiz][0][0]
         self.titleLabel.text = data[selectedQuiz][currentQuestion + 1][0]
         let question = data[selectedQuiz][currentQuestion + 1]
+        print(question)
         self.answer1.setTitle(question[1], for: .normal)
         self.answer2.setTitle(question[2], for: .normal)
         self.answer3.setTitle(question[3], for: .normal)
